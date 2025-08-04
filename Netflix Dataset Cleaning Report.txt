@@ -1,0 +1,31 @@
+Netflix Dataset Cleaning Report
+
+Overview:  
+I began with a raw Netflix dataset containing 8,807 titles (movies and TV shows). While the data was largely complete, it required targeted cleaning to ensure accuracy for analysis. Here’s how I prepared it:  
+
+1. Handling Missing Data:  
+- Empty director/country fields**: Over 2,600 entries lacked director information, and 831 had no country listed. Instead of deleting these (which would skew the dataset), I replaced nulls with "Unknown" to preserve the data volume.  
+- Missing ratings: A handful of titles (10) had no rating. These were marked as "Not Rated" to maintain consistency.  
+
+2. Standardizing Format:  
+- Dates: Converted various date formats (like "January 1, 2020") into a uniform `YYYY-MM-DD` structure for easier analysis.  
+- Durations:  
+  - Movies: Transformed entries like "90 min" into numeric values (`90`) to calculate averages.  
+  - TV Shows: Standardized season listings (e.g., "Season 1" → "1 Season").  
+- Text cleanup: Lowercased all column names (e.g., `Show_Id` → `show_id`) and unified country names (e.g., "US" and "U.S.A." became "United States").  
+
+3. Quality Checks:
+- Duplicates: The dataset had no exact duplicates (verified using Pandas’ `drop_duplicates()`).  
+- Data types: Ensured `release_year` was numeric and `date_added` was datetime for accurate trend analysis.  
+
+4. Impact on Analysis:  
+These changes enabled clear insights:  
+- Content split: 69.6% Movies (6,131) vs. 30.4% TV Shows (2,676).  
+- Production trends: Peak movie releases occurred in 2017–2018, with 767 titles each year.  
+- Top durations: The most common movie length was 90 minutes (152 titles), while most TV shows had just 1 season.  
+
+Key Decisions from my task completion:
+- Preserved all rows to avoid biasing the dataset.  
+- Chose clarity over deletion(e.g., "Unknown" labels for missing directors).  
+- Prioritized analysis-ready formats (e.g., numeric durations for calculations).  
+
